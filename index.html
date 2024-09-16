@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" href="img/logo_preto_amarelo.png">
+    <title>Meus Livros</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <header>
+        <h1>Meus Livros</h1>
+    </header>
+
+    <main>
+        <!-- Barra de Pesquisa -->
+        <section id="search-section">
+            <button onclick="abrirModalAdicionar()">Adicionar Livro</button>
+            <input type="text" placeholder="Digite o nome do livro" id="campo-pesquisa">
+            <button onclick="pesquisar()">Pesquisar</button>
+        </section>
+
+        <!-- Seção de Resultados da Pesquisa -->
+        <section class="books-container" id="resultados-pesquisa"></section>
+    </main>
+
+    <footer>
+        <p>
+            Desenvolvido por
+            <img src="img/logo_preto_amarelo.png" alt="Logo Ruisu26">
+            Ruisu26
+        </p>
+        <p>2024</p>
+    </footer>
+
+    <!-- Modal para exibição dos detalhes do livro -->
+    <div id="modal" class="modal">
+        <div id="modal-content">
+            <button id="modal-close" onclick="fecharModal()">Fechar</button>
+        </div>
+    </div>
+
+    <!-- Modal para adicionar livro -->
+    <div id="modal-adicionar" class="modal">
+        <div id="modal-adicionar-content">
+            <h2>Adicionar Novo Livro</h2>
+            <form id="form-adicionar-livro" onsubmit="salvarLivro(event)">
+                <label for="capa">Capa:</label>
+                <input type="file" id="capa" accept="image/*" onchange="mostrarPreview()">
+                <img id="capa-preview" src="img/placeholder.png" alt="Preview da Capa" style="max-width: 100px;">
+                <label for="titulo">Título:</label>
+                <input type="text" id="titulo" required>
+                <label for="descricao">Descrição:</label>
+                <textarea id="descricao" required></textarea>
+                <label for="status">Status:</label>
+                <select id="status" required>
+                    <option value="Lido">Lido</option>
+                    <option value="Não Lido">Não Lido</option>
+                    <option value="Lendo">Lendo</option>
+                </select>
+                <label for="ano">Ano:</label>
+                <input type="number" id="ano" required>
+                <button type="submit">Adicionar</button>
+                <button type="button" onclick="fecharModalAdicionar()">Cancelar</button>
+            </form>
+        </div>
+    </div>
+
+    <!-- Modal para editar livro -->
+    <div id="modal-editar" class="modal">
+        <div id="modal-editar-content">
+            <h2>Editar Livro</h2>
+            <form id="form-editar-livro" onsubmit="salvarEdicao(event)">
+                <label for="editar-capa">Capa:</label>
+                <input type="file" id="editar-capa" accept="image/*" onchange="mostrarPreviewEdicao()">
+                <img id="editar-capa-preview" src="img/placeholder.png" alt="Preview da Capa" style="max-width: 100px;">
+                <label for="editar-titulo">Título:</label>
+                <input type="text" id="editar-titulo" required>
+                <label for="editar-descricao">Descrição:</label>
+                <textarea id="editar-descricao" required></textarea>
+                <label for="editar-status">Status:</label>
+                <select id="editar-status" required>
+                    <option value="Lido">Lido</option>
+                    <option value="Não Lido">Não Lido</option>
+                    <option value="Lendo">Lendo</option>
+                </select>
+                <label for="editar-ano">Ano:</label>
+                <input type="number" id="editar-ano" required>
+                <button type="submit">Salvar</button>
+                <button type="button" onclick="fecharModalEditar()">Cancelar</button>
+            </form>
+        </div>
+    </div>
+
+    <!-- Área de Scripts -->
+    <script src="dados.js"></script>
+    <script src="app.js"></script>
+</body>
+</html>
